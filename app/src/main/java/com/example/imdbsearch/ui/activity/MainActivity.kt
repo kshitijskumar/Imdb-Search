@@ -7,7 +7,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.imdbsearch.R
 import com.example.imdbsearch.databinding.ActivityMainBinding
+import com.example.imdbsearch.domain.network.MoviesApiService
+import dagger.Provides
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
