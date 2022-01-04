@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.imdbsearch.domain.models.MoviesSearchResultResponse
+import com.example.imdbsearch.domain.models.SingleMovieItem
 import com.example.imdbsearch.domain.repository.searchmovies.MoviesSearchRepository
 import com.example.imdbsearch.domain.repository.searchmovies.MoviesSearchRepositoryImpl
 import com.example.imdbsearch.utils.DataResult
@@ -36,7 +37,39 @@ class MoviesSearchViewModel @Inject constructor(
                 currentSearchQuery,
                 currentPageNumber
             )
-            _searchResultState.postValue(searchResult)
+            handleSearchResultResponse(searchResult)
+        }
+    }
+
+    private fun handleSearchResultResponse(searchResult: DataResult<MoviesSearchResultResponse>) {
+        when (searchResult) {
+            is DataResult.Success -> {
+                if (currentPageNumber == 1) {
+                    // some new data arrived
+                    _searchResultState.postValue(searchResult)
+                } else {
+                    // new data due to pagination so completeList = old + new
+                    if (searchResultState.value is DataResult.Success) {
+                        val currentMoviesList = (searchResultState.value as DataResult.Success).data.searchResultList ?: listOf()
+                        val newMoviesList = searchResult.data.searchResultList ?: listOf()
+
+                        val updatedMoviesList = mutableListOf<SingleMovieItem>().apply {
+                            addAll(currentMoviesList)
+                            addAll(newMoviesList)
+                        }
+                        val updatedResultData = searchResult.data.copy(searchResultList = updatedMoviesList).apply {
+                            searchQueryForResult = searchResult.data.searchQueryForResult
+                        }
+                        _searchResultState.postValue(
+                            DataResult.Success(updatedResultData)
+                        )
+                    } else {
+                        _searchResultState.postValue(searchResult)
+                    }
+
+                }
+            }
+            else -> _searchResultState.postValue(searchResult)
         }
     }
 
