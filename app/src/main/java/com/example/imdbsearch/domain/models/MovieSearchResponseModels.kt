@@ -6,7 +6,9 @@ data class MoviesSearchResultResponse(
     @SerializedName("Search") val searchResultList: List<SingleMovieItem>? = listOf(),
     val totalResults: String = "",
     @SerializedName("Response") val response: String = ""
-)
+) {
+    lateinit var searchQueryForResult: String
+}
 
 data class SingleMovieItem(
     @SerializedName("Title") val title: String? = "",
