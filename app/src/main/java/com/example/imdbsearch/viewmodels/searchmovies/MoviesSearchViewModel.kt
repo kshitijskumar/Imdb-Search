@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.imdbsearch.domain.models.MoviesSearchResultResponse
 import com.example.imdbsearch.domain.models.SingleMovieItem
 import com.example.imdbsearch.domain.repository.searchmovies.MoviesSearchRepository
-import com.example.imdbsearch.domain.repository.searchmovies.MoviesSearchRepositoryImpl
 import com.example.imdbsearch.utils.DataResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -85,8 +84,10 @@ class MoviesSearchViewModel @Inject constructor(
         currentPageNumber = 1
         if (query != "") {
             initiateSearchForQuery()
+            _searchResultState.value = DataResult.Loading
         } else {
             searchingJob?.cancel()
+            _searchResultState.value = DataResult.Idle
         }
     }
 

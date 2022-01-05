@@ -1,5 +1,7 @@
 package com.example.imdbsearch.utils
 
+import android.content.Context
+import android.widget.Toast
 import com.example.imdbsearch.R
 
 object Utils {
@@ -15,4 +17,8 @@ object Utils {
     fun getRandomColorPlaceHolder() : Int {
         return colorsList.random()
     }
+}
+
+fun Context.showToast(toastMsg: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, toastMsg, duration).show()
 }

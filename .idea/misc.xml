@@ -5,10 +5,11 @@
       <map>
         <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/drawable/bg_bottom_black_gradient.xml" value="0.178125" />
         <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/drawable/bg_bottom_gradient.xml" value="0.178125" />
+        <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/drawable/bg_light_grey_rounded.xml" value="0.178125" />
         <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/drawable/bg_translucent_black_pill.xml" value="0.178125" />
         <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/layout/activity_main.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/layout/fragment_movie_details.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/layout/fragment_movies_search.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/layout/fragment_movies_search.xml" value="0.22531293463143254" />
         <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/layout/layout_single_movie_item.xml" value="0.3447488584474886" />
         <entry key="..\:/Users/Kshitij/AndroidStudioProjects/ImdbSearch/app/src/main/res/layout/layout_single_moview_item.xml" value="0.16197916666666667" />
       </map>

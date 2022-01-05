@@ -15,6 +15,7 @@ import com.example.imdbsearch.R
 import com.example.imdbsearch.databinding.FragmentMoviesSearchBinding
 import com.example.imdbsearch.ui.features.moviedetails.MovieDetailsFragment.Companion.MOVIE_ITEM_ID
 import com.example.imdbsearch.utils.DataResult
+import com.example.imdbsearch.utils.showToast
 import com.example.imdbsearch.viewmodels.searchmovies.MoviesSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -76,11 +77,16 @@ class MoviesSearchFragment : Fragment() {
 
     private fun observeValues() {
         viewModel.searchResultState.observe(viewLifecycleOwner) {
-            resetViewStates()
             when(it) {
                 is DataResult.Success -> {
+                    resetViewStates()
                     moviesAdapter.submitData(it.data)
                 }
+                is DataResult.Error -> {
+                    resetViewStates()
+                    requireContext().showToast(it.errorMsg)
+                }
+                else -> Unit
             }
 
         }
@@ -89,7 +95,6 @@ class MoviesSearchFragment : Fragment() {
     private fun resetViewStates() {
         binding.apply {
             progressBar.visibility = View.GONE
-            etSearch.clearAnimation()
         }
         val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)

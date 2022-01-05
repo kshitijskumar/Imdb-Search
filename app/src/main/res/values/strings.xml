@@ -6,4 +6,5 @@
     <string name="storyline">Storyline</string>
     <string name="cast_and_crew">Cast and Crew</string>
     <string name="fetching_movie_details">Fetching Movie Details...</string>
+    <string name="search_any_movie_or_series">Search any movie or series</string>
 </resources>

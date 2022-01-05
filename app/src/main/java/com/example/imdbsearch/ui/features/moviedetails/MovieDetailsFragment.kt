@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.imdbsearch.databinding.FragmentMovieDetailsBinding
 import com.example.imdbsearch.utils.DataResult
+import com.example.imdbsearch.utils.showToast
 import com.example.imdbsearch.viewmodels.moviedetails.MovieDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,9 +59,10 @@ class MovieDetailsFragment : Fragment() {
                 is DataResult.Success -> {
                     binding.movie = it.data
                 }
-                else -> {
-
+                is DataResult.Error -> {
+                    requireContext().showToast(it.errorMsg)
                 }
+                else -> Unit
             }
         }
     }
