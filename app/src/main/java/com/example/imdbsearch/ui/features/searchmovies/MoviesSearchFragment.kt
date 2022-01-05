@@ -15,6 +15,7 @@ import com.example.imdbsearch.R
 import com.example.imdbsearch.databinding.FragmentMoviesSearchBinding
 import com.example.imdbsearch.ui.features.moviedetails.MovieDetailsFragment.Companion.MOVIE_ITEM_ID
 import com.example.imdbsearch.utils.DataResult
+import com.example.imdbsearch.utils.SpacerItemDecoration
 import com.example.imdbsearch.utils.showToast
 import com.example.imdbsearch.viewmodels.searchmovies.MoviesSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -72,6 +73,7 @@ class MoviesSearchFragment : Fragment() {
         binding.rvMovies.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = moviesAdapter
+            addItemDecoration(SpacerItemDecoration(resources.getDimensionPixelSize(R.dimen.dp_4)))
         }
     }
 
@@ -81,6 +83,9 @@ class MoviesSearchFragment : Fragment() {
                 is DataResult.Success -> {
                     resetViewStates()
                     moviesAdapter.submitData(it.data)
+                    if (it.data.searchResultList.isNullOrEmpty()) {
+                        requireContext().showToast("Sorry no results found")
+                    }
                 }
                 is DataResult.Error -> {
                     resetViewStates()
