@@ -85,6 +85,8 @@ class MoviesSearchViewModel @Inject constructor(
         currentPageNumber = 1
         if (query != "") {
             initiateSearchForQuery()
+        } else {
+            searchingJob?.cancel()
         }
     }
 

@@ -3,6 +3,8 @@ package com.example.imdbsearch.di
 import com.example.imdbsearch.BuildConfig
 import com.example.imdbsearch.domain.network.MoviesApiService
 import com.example.imdbsearch.domain.network.NetworkHelper
+import com.example.imdbsearch.domain.repository.moviewdetails.MovieDetailsRepository
+import com.example.imdbsearch.domain.repository.moviewdetails.MovieDetailsRepositoryImpl
 import com.example.imdbsearch.domain.repository.searchmovies.MoviesSearchRepository
 import com.example.imdbsearch.domain.repository.searchmovies.MoviesSearchRepositoryImpl
 import dagger.Binds
@@ -31,4 +33,11 @@ interface MoviesSearchBindingModule {
     @Binds
     fun bindMoviesSearchRepository(repository: MoviesSearchRepositoryImpl) : MoviesSearchRepository
 
+}
+
+@Module
+@InstallIn(ViewModelComponent::class)
+interface MovieDetailsBindingModule {
+    @Binds
+    fun bindMovieDetailsRepository(repository: MovieDetailsRepositoryImpl) : MovieDetailsRepository
 }

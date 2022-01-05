@@ -2,4 +2,8 @@
     <string name="app_name">Imdb Search</string>
 
     <string name="poster_description">Movie poster for %1$s</string>
+    <string name="release_genre_duration">%1$s · %2$s · %3$s</string>
+    <string name="storyline">Storyline</string>
+    <string name="cast_and_crew">Cast and Crew</string>
+    <string name="fetching_movie_details">Fetching Movie Details...</string>
 </resources>

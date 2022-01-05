@@ -1,17 +1,12 @@
 package com.example.imdbsearch.ui.features.searchmovies
 
 import android.content.Context
-import android.inputmethodservice.InputMethodService
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.os.bundleOf
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -22,7 +17,6 @@ import com.example.imdbsearch.ui.features.moviedetails.MovieDetailsFragment.Comp
 import com.example.imdbsearch.utils.DataResult
 import com.example.imdbsearch.viewmodels.searchmovies.MoviesSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import leakcanary.AppWatcher
 
 @AndroidEntryPoint
 class MoviesSearchFragment : Fragment() {

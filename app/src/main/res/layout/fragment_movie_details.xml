@@ -1,15 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="vm"
+            type="com.example.imdbsearch.viewmodels.moviedetails.MovieDetailsViewModel" />
+        <variable
+            name="movie"
+            type="com.example.imdbsearch.domain.models.MovieDetailsResponse" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/iv_poster"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="4:5"
+                android:scaleType="centerCrop"
+                tools:src="@color/primary_red"
+                app:loadImageUrl="@{movie.posterUrl}"
+                app:placeholder="@{@color/primary_red}"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@id/iv_poster"
+                app:layout_constraintBottom_toBottomOf="@id/iv_poster"
+                android:background="@drawable/bg_bottom_black_gradient"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/iv_poster"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@color/black"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/iv_poster"
+                tools:text="Some Amazing Movie"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="30dp"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:includeFontPadding="false"
+                android:layout_marginBottom="40dp"
+                android:text="@{movie.title}"/>
+
+            <TextView
+                android:id="@+id/tv_release_genre_runtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="2016  ·  Fantasy  ·  58 min"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintEnd_toEndOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                android:textColor="@color/subtext_grey"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="18dp"
+                android:text="@{@string/release_genre_duration(movie.year, movie.genre, movie.runtime)}"/>
+
+            <TextView
+                android:id="@+id/tv_storyline_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_release_genre_runtime"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"
+                android:text="@string/storyline"
+                android:textColor="@color/white"
+                android:layout_marginTop="24dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_storyline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_storyline_header"
+                app:layout_constraintStart_toStartOf="@id/tv_storyline_header"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/subtext_grey"
+                android:layout_marginTop="8dp"
+                android:text="@{movie.plot}"
+                android:lineSpacingMultiplier="1.2"
+                tools:text="It is a documentary aimed at newcomers to anime, and follows anime newbie, Alex Burunova, as she dives into the mysterious world of the genre. The documentary features some of the biggest anime stars like Kenji Kamiyama, Shinji Arama"/>
+
+            <TextView
+                android:id="@+id/tv_cast_crew_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cast_and_crew"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/tv_storyline"
+                app:layout_constraintStart_toStartOf="@id/tv_storyline"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/tv_cast_crew"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="Alex Burunova, Shinji Aramaki, Kôzô Morishita, Tania Nolan, Julia Yorks, Meggy Garol"
+                app:layout_constraintStart_toStartOf="@id/tv_storyline"
+                app:layout_constraintEnd_toEndOf="@id/tv_storyline"
+                app:layout_constraintTop_toBottomOf="@id/tv_cast_crew_header"
+                android:layout_marginEnd="20dp"
+                android:textSize="16sp"
+                android:textColor="@color/subtext_grey"
+                android:layout_marginTop="8dp"
+                android:text="@{movie.castAndCrew}"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@color/black"
+                tools:visibility="gone"
+                dataResultLoading="@{vm.movieDetailsState}">
+
+                <ProgressBar
+                    android:id="@+id/pb_loading"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:indeterminateTint="@color/primary_red"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/pb_loading"
+                    app:layout_constraintStart_toStartOf="@id/pb_loading"
+                    app:layout_constraintEnd_toEndOf="@id/pb_loading"
+                    android:text="@string/fetching_movie_details"
+                    android:textColor="@color/subtext_grey"
+                    android:layout_marginTop="8dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
