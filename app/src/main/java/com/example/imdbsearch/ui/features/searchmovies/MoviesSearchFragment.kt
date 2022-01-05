@@ -10,11 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.imdbsearch.R
 import com.example.imdbsearch.databinding.FragmentMoviesSearchBinding
+import com.example.imdbsearch.ui.features.moviedetails.MovieDetailsFragment.Companion.MOVIE_ITEM_ID
 import com.example.imdbsearch.utils.DataResult
 import com.example.imdbsearch.viewmodels.searchmovies.MoviesSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,6 +62,15 @@ class MoviesSearchFragment : Fragment() {
             fetchNextResult = {
                 binding.progressBar.visibility = View.VISIBLE
                 viewModel.updateCurrentPageNumber()
+            },
+            onMovieItemClick = { imdbId ->
+                val bundle = bundleOf(
+                    MOVIE_ITEM_ID to imdbId
+                )
+                findNavController().navigate(
+                    R.id.action_moviesSearchFragment_to_movieDetailsFragment,
+                    bundle
+                )
             }
         )
         binding.rvMovies.apply {

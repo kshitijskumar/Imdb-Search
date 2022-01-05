@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Imdb Search</string>
+
+    <string name="poster_description">Movie poster for %1$s</string>
 </resources>

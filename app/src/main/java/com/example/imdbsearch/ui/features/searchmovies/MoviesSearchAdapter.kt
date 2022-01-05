@@ -10,7 +10,8 @@ import com.example.imdbsearch.domain.models.MoviesSearchResultResponse
 import com.example.imdbsearch.domain.models.SingleMovieItem
 
 class MoviesSearchAdapter(
-    private val fetchNextResult: () -> Unit
+    private val fetchNextResult: () -> Unit,
+    private val onMovieItemClick: (imdbId: String) -> Unit = {}
 ) : ListAdapter<SingleMovieItem, MoviesSearchAdapter.SingleMovieViewHolder>(
     diffUtil
 ) {
@@ -44,7 +45,7 @@ class MoviesSearchAdapter(
 
     override fun onBindViewHolder(holder: SingleMovieViewHolder, position: Int) {
         val item = getItem(position)
-        holder.binding.tvTitle.text = item.title
+        holder.bind(item)
         if (currentList.size == holder.adapterPosition+1 && holder.adapterPosition != lastPositionWherePaginationChecked) {
             lastPositionWherePaginationChecked = holder.adapterPosition
             fetchNextResult.invoke()
@@ -61,6 +62,16 @@ class MoviesSearchAdapter(
     }
 
     inner class SingleMovieViewHolder(val binding: LayoutSingleMovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val itemVm = SingleMovieItemVm(onMovieItemClick)
+
+        init {
+            binding.vm = itemVm
+        }
+
+        fun bind(movieItem: SingleMovieItem) {
+            itemVm.bindData(movieItem)
+        }
+
 
     }
 }
