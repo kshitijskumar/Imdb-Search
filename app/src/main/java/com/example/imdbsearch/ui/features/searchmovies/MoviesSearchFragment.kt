@@ -22,6 +22,7 @@ import com.example.imdbsearch.ui.features.moviedetails.MovieDetailsFragment.Comp
 import com.example.imdbsearch.utils.DataResult
 import com.example.imdbsearch.viewmodels.searchmovies.MoviesSearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import leakcanary.AppWatcher
 
 @AndroidEntryPoint
 class MoviesSearchFragment : Fragment() {
