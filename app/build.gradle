@@ -85,4 +85,8 @@ dependencies {
 
     // mockito
     testImplementation "org.mockito:mockito-core:4.2.0"
+
+    // testing
+    def archTestingVersion = "2.1.0"
+    testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
 }
