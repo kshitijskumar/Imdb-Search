@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="androidx.databinding.ObservableInt"/>
+        <variable
+            name="ratings"
+            type="ObservableInt" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/star_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/bg_star_checkbox_state"
+            app:layout_constraintStart_toStartOf="parent"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintEnd_toStartOf="@id/star_2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:checked="true"
+            starPosition="@{1}"
+            ratings="@{ratings}"/>
+
+        <CheckBox
+            android:id="@+id/star_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/bg_star_checkbox_state"
+            app:layout_constraintStart_toEndOf="@id/star_1"
+            app:layout_constraintEnd_toStartOf="@id/star_3"
+            android:clickable="false"
+            android:focusable="false"
+            tools:checked="true"
+            app:layout_constraintTop_toTopOf="parent"
+            starPosition="@{2}"
+            ratings="@{ratings}"/>
+
+        <CheckBox
+            android:id="@+id/star_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/bg_star_checkbox_state"
+            app:layout_constraintStart_toEndOf="@id/star_2"
+            app:layout_constraintEnd_toStartOf="@id/star_4"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintTop_toTopOf="parent"
+            starPosition="@{3}"
+            ratings="@{ratings}"/>
+
+        <CheckBox
+            android:id="@+id/star_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/bg_star_checkbox_state"
+            app:layout_constraintStart_toEndOf="@id/star_3"
+            app:layout_constraintEnd_toStartOf="@id/star_5"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintTop_toTopOf="parent"
+            starPosition="@{4}"
+            ratings="@{ratings}"/>
+
+        <CheckBox
+            android:id="@+id/star_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/bg_star_checkbox_state"
+            app:layout_constraintStart_toEndOf="@id/star_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintTop_toTopOf="parent"
+            starPosition="@{5}"
+            ratings="@{ratings}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
