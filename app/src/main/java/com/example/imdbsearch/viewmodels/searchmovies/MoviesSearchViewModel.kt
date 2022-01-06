@@ -40,6 +40,11 @@ class MoviesSearchViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Handles the result for the query and page number.
+     * If the page number is 1, this means search was initiated because of query change so we want to replace the existing data with new data.
+     * If the page number is > 1, this means search was initiated because of change in pager number (scrolling to end for pagination) so we want to update the existing data with existing + new .
+     */
     private fun handleSearchResultResponse(searchResult: DataResult<MoviesSearchResultResponse>) {
         when (searchResult) {
             is DataResult.Success -> {

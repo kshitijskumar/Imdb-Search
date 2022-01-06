@@ -9,6 +9,9 @@ import com.bumptech.glide.Glide
 import com.example.imdbsearch.domain.models.SingleMovieItem
 import com.example.imdbsearch.utils.Utils
 
+/**
+ * Simple data holder to pass in databinding
+ */
 class SingleMovieItemVm(private val onMovieClick: (String) -> Unit) {
 
     val movie = ObservableField<SingleMovieItem>()
