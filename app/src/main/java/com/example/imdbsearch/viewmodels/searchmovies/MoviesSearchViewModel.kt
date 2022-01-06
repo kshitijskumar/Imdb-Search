@@ -28,6 +28,9 @@ class MoviesSearchViewModel @Inject constructor(
     private val _searchResultState = MutableLiveData<DataResult<MoviesSearchResultResponse>>()
     val searchResultState: LiveData<DataResult<MoviesSearchResultResponse>> get() = _searchResultState
 
+    private val _shouldShowClearTextIcon = MutableLiveData<Boolean>(false)
+    val shouldShowClearTextIcon: LiveData<Boolean> get() = _shouldShowClearTextIcon
+
     private fun initiateSearchForQuery() {
         searchingJob?.cancel()
         searchingJob = viewModelScope.launch {
@@ -83,9 +86,11 @@ class MoviesSearchViewModel @Inject constructor(
         if (query != "") {
             initiateSearchForQuery()
             _searchResultState.value = DataResult.Loading
+            _shouldShowClearTextIcon.value = true
         } else {
             searchingJob?.cancel()
             _searchResultState.value = DataResult.Idle
+            _shouldShowClearTextIcon.value = false
         }
     }
 

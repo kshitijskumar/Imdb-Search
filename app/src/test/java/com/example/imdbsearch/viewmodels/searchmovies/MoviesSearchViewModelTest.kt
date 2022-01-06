@@ -9,15 +9,13 @@ import com.example.imdbsearch.viewmodels.searchmovies.FakeMoviesSearchRepository
 import com.example.imdbsearch.viewmodels.searchmovies.FakeMoviesSearchRepository.Companion.VALID_QUERY_2
 import junit.framework.Assert.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.CoreMatchers
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.*
 
 @ExperimentalCoroutinesApi
 class MoviesSearchViewModelTest {
@@ -96,6 +94,24 @@ class MoviesSearchViewModelTest {
                 searchStateValueForNextPage.data.searchResultList?.get(it)
             )
         }
+    }
+
+    @Test
+    fun updateCurrentSearchQuery_onEmptyQueryString_shouldUpdateClearTextValueFalse(): Unit = runTest {
+        subjectUnderTest.updateCurrentSearchQuery("")
+
+        val shouldShowClearTextIconValue = subjectUnderTest.shouldShowClearTextIcon.getOrAwaitValue()
+
+        assertTrue(!shouldShowClearTextIconValue)
+    }
+
+    @Test
+    fun updateCurrentSearchQuery_onNonEmptyQueryString_shouldUpdateClearTextValueTrue(): Unit = runTest {
+        subjectUnderTest.updateCurrentSearchQuery("some query")
+
+        val shouldShowClearTextIconValue = subjectUnderTest.shouldShowClearTextIcon.getOrAwaitValue()
+
+        assertTrue(shouldShowClearTextIconValue)
     }
 
 

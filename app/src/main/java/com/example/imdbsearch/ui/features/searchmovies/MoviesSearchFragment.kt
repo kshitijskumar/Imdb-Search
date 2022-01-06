@@ -52,6 +52,9 @@ class MoviesSearchFragment : Fragment() {
 
     private fun initViews() {
         initRecyclerView()
+        binding.btnClearText.setOnClickListener {
+            binding.etSearch.setText("")
+        }
     }
 
     private fun initRecyclerView() {
