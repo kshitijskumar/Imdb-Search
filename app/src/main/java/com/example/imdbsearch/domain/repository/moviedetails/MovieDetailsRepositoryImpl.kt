@@ -1,4 +1,4 @@
-package com.example.imdbsearch.domain.repository.moviewdetails
+package com.example.imdbsearch.domain.repository.moviedetails
 
 import com.example.imdbsearch.domain.models.MovieDetailsResponse
 import com.example.imdbsearch.domain.network.MoviesApiService

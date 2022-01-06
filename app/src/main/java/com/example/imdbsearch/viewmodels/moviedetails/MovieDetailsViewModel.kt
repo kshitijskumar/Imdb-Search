@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.imdbsearch.domain.models.MovieDetailsResponse
-import com.example.imdbsearch.domain.repository.moviewdetails.MovieDetailsRepository
+import com.example.imdbsearch.domain.repository.moviedetails.MovieDetailsRepository
 import com.example.imdbsearch.utils.DataResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

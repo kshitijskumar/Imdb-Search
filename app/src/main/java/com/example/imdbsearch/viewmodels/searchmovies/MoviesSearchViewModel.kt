@@ -75,13 +75,6 @@ class MoviesSearchViewModel @Inject constructor(
     fun updateCurrentSearchQuery(query: String) {
         currentSearchQuery = query
         currentPageNumber = 1
-        initiateSearchForQuery()
-    }
-
-    fun updateCurrentSearchQuery(editable: Editable?) {
-        val query = editable?.toString() ?: return
-        currentSearchQuery = query
-        currentPageNumber = 1
         if (query != "") {
             initiateSearchForQuery()
             _searchResultState.value = DataResult.Loading
@@ -89,6 +82,11 @@ class MoviesSearchViewModel @Inject constructor(
             searchingJob?.cancel()
             _searchResultState.value = DataResult.Idle
         }
+    }
+
+    fun updateCurrentSearchQuery(editable: Editable?) {
+        val query = editable?.toString() ?: return
+        updateCurrentSearchQuery(query)
     }
 
     fun updateCurrentPageNumber() {
